@@ -1,5 +1,7 @@
 package com.example.security.security;
 
+import static com.example.security.security.ApplicationUserRole.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,13 +46,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetails manalRzzlUser = User.builder()
         .username("manalrzzl")
         .password(passwordEncoder.encode("password"))
-        .roles("STUDENT") //internally will be ROLE_STUDENT
+        .roles(STUDENT.name()) //internally will be ROLE_STUDENT
         .build();
 
     UserDetails ayaUser = User.builder()
         .username("aya")
         .password(passwordEncoder.encode("pass123"))
-        .roles("ADMIN")
+        .roles(ADMIN.name())
         .build();
 
 
