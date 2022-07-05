@@ -34,6 +34,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers("/","index","/css/*","/js/*")
         .permitAll()
+        //this will protect the api to only be accessed by students
+        .antMatchers("/api/**").hasRole(STUDENT.name())
         .anyRequest()
         .authenticated()
         .and()
@@ -55,11 +57,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         .roles(ADMIN.name())
         .build();
 
-
     return new InMemoryUserDetailsManager(
         manalRzzlUser,
         ayaUser
     );
 //    return super.userDetailsService();
   }
+
 }
