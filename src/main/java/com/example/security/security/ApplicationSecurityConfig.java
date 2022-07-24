@@ -39,7 +39,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     http
 //        .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //        .and()
-//        .csrf().disable()
+        .csrf().disable()
         .authorizeRequests()
         .antMatchers("/","index","/css/*","/js/*")
         .permitAll()
@@ -51,6 +51,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //        .httpBasic();
         .formLogin()
         .loginPage("/login").permitAll();
+//        .defaultSuccessUrl("/courses", true);
   }
 
   @Override
