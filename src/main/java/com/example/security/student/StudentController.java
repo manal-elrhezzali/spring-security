@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
 
   private static final List<Student> STUDENTS = Arrays.asList(
-      new Student(1, "Manal rzzl"),
-      new Student(2, "aya rzzl"),
-      new Student(3, "hiba rzzl")
+      new Student(1, "Anna smith"),
+      new Student(2, "linda smith"),
+      new Student(3, "tom smith")
   );
 
   @GetMapping(path= "{studentId}")

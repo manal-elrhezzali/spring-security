@@ -45,43 +45,40 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll()
         //this will protect the api to only be accessed by students
         .antMatchers("/api/**").hasRole(STUDENT.name())
-//        .antMatchers(HttpMethod.GET,"/management/api/**").hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())
-//        .antMatchers(HttpMethod.DELETE, "/management/api/**").hasAuthority(ApplicationUserPermission.COURSE_WRITE.getPermission())
-//        .antMatchers(HttpMethod.PUT, "/management/api/**").hasAuthority(ApplicationUserPermission.COURSE_WRITE.getPermission())
-//        .antMatchers(HttpMethod.POST, "/management/api/**").hasAuthority(ApplicationUserPermission.COURSE_WRITE.getPermission())
         .anyRequest()
         .authenticated()
         .and()
-        .httpBasic();
+//        .httpBasic();
+        .formLogin();
   }
 
   @Override
   @Bean
   protected UserDetailsService userDetailsService() {
-    UserDetails manalRzzlUser = User.builder()
-        .username("manalrzzl")
+    UserDetails annasmithUser = User.builder()
+        .username("annasmith")
         .password(passwordEncoder.encode("password"))
 //        .roles(STUDENT.name()) //internally will be ROLE_STUDENT
         .authorities(STUDENT.getGrantedAuthorities())
         .build();
 
-    UserDetails ayaUser = User.builder()
-        .username("aya")
-        .password(passwordEncoder.encode("pass123"))
+    UserDetails lindaUser = User.builder()
+        .username("linda")
+        .password(passwordEncoder.encode("password123"))
 //        .roles(ADMIN.name()) //ROLE_ADMIN
         .authorities(ADMIN.getGrantedAuthorities())
         .build();
 
     UserDetails tomUser = User.builder()
         .username("tom")
-        .password(passwordEncoder.encode("pass123"))
+        .password(passwordEncoder.encode("password123"))
 //        .roles(ADMINTRAINEE.name()) //ROLE_ADMINTRAINEE
         .authorities(ADMINTRAINEE.getGrantedAuthorities())
         .build();
 
     return new InMemoryUserDetailsManager(
-        manalRzzlUser,
-        ayaUser,
+        annasmithUser,
+        lindaUser,
         tomUser
     );
 //    return super.userDetailsService();
